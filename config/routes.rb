@@ -42,10 +42,12 @@ Rails.application.routes.draw do
   resources :males do
     member do
       get :following
-      get :unfollowing, only: [:index]
+      get :unfollowing, only: [:index]      
     end
     resources :male_posts
   end
+
+  get 'males/:male_id/unfollowing/lady_docotrs/:id' => 'males#unfollowing_index', as: :unfollowing_index
 
   resources :male_post_comments, except: [:new]
   

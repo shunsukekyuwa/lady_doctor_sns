@@ -2,7 +2,7 @@ class MalesController < ApplicationController
   #あとで解除する
   #before_action :authenticate_male!, except: [:show]
   before_action :set_follow_ids, only: [:index, :unfollowing]
-  before_action :set_male, only: [:index, :show, :edit, :update, :destroy, :unfollowing, :following, :profile_update]
+  before_action :set_male, only: [:index, :show, :edit, :update, :destroy, :unfollowing, :following, :profile_update, :unfollowing_index]
 
 	def index
     if @male.profile_image_id
@@ -52,6 +52,21 @@ class MalesController < ApplicationController
     #followしてない女医を全部とってくる
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
     @lady_doctors = LadyDoctor.where.not(id: follow_ids).all
+  end
+
+  def unfollowing_index
+    @lady_doctor = LadyDoctor.find(params[:id])
+    if @lady_doctor.profile_image_id
+      image_id = @lady_doctor.profile_image_id
+      @lady_doctor_post = LadyDoctorPost.find(image_id)
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+    else
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+    end
+    #@lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
+    #@male = Male.find(params[:male_id])
+    #@lady_doctor = LadyDoctor.find(params[:id])
+    #@lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
   end
 
   def show
