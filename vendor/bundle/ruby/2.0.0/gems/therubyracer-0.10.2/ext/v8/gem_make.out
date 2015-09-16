@@ -1,0 +1,77 @@
+/Users/shunsukekyuwa/.rbenv/versions/2.0.0-p481/bin/ruby extconf.rb --with-v8-dir
+checking for main() in -lobjc... yes
+creating Makefile
+
+make "DESTDIR="
+compiling rr.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+rr.cpp:48:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+compiling v8.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_array.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_callbacks.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_context.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_date.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_debug.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_exception.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+v8_exception.cpp:10:16: warning: unused variable 'stack' [-Wunused-variable]
+  static void* stack[20];
+               ^
+1 warning generated.
+compiling v8_external.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+v8_external.cpp:10:9: warning: unused variable 'references' [-Wunused-variable]
+  VALUE references;
+        ^
+1 warning generated.
+compiling v8_function.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_handle.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_locker.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+v8_locker.cpp:45:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+v8_locker.cpp:85:5: warning: control reaches end of non-void function [-Wreturn-type]
+    }
+    ^
+2 warnings generated.
+compiling v8_message.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_object.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+v8_object.cpp:77:19: warning: unused variable 'proto' [-Wunused-variable]
+    Handle<Value> proto(rr_rb2v8(prototype));
+                  ^
+1 warning generated.
+compiling v8_script.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_string.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_template.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_try_catch.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_v8.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+compiling v8_value.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+v8_value.cpp:100:9: warning: unused function 'ToInt32' [-Wunused-function]
+  VALUE ToInt32(VALUE self) {
+        ^
+1 warning generated.
+compiling v8_weakref.cpp
+clang: warning: argument unused during compilation: '-rdynamic'
+linking shared-object v8.bundle
+clang: error: no such file or directory: '/Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.3.10.4/lib/libv8/build/v8/libv8.a'
+make: *** [v8.bundle] Error 1

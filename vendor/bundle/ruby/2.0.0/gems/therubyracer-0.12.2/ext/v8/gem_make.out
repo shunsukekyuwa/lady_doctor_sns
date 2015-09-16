@@ -1,0 +1,31 @@
+/Users/shunsukekyuwa/.rbenv/versions/2.0.0-p481/bin/ruby extconf.rb --with-v8-dir
+checking for main() in -lpthread... yes
+checking for main() in -lobjc... yes
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=/Users/shunsukekyuwa/.rbenv/versions/2.0.0-p481/bin/ruby
+	--with-pthreadlib
+	--without-pthreadlib
+	--with-objclib
+	--without-objclib
+	--enable-debug
+	--disable-debug
+	--with-v8-dir
+/Users/shunsukekyuwa/.rbenv/versions/2.0.0-p481/lib/ruby/2.0.0/mkmf.rb:1671:in `dir_config': undefined method `split' for true:TrueClass (NoMethodError)
+	from /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.16.14.11/ext/libv8/location.rb:49:in `configure'
+	from /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.16.14.11/lib/libv8.rb:7:in `configure_makefile'
+	from extconf.rb:32:in `<main>'

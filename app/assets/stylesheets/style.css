@@ -1,0 +1,194 @@
+.body{
+  background-color: #F5F5F5;
+  margin: 0 auto;
+  width: 960px;
+  position: relative;
+}
+
+.container{
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 640px;
+  position: relative;
+}
+
+.contents {
+  margin: 0 auto;
+  position: relative;
+}
+
+.userPostWrapper {
+	margin: 0 auto;
+	
+    /*background-color: #FFFFFF;*/
+}
+
+._18-- {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 4px;
+  margin: 10px 40px;
+}
+
+.box_left {
+    width: 150px;
+    height: 100px;
+    margin-left: 10px;
+    float: left;    
+}
+
+.profile {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  color: #3b5998;
+  width: 300px;
+}
+
+.myprofile {
+  /*margin-top: 5px;*/
+  margin-bottom: 20px;
+  color: #3b5998;
+  width: 150px;
+}
+
+.ladyprofile {
+  margin-bottom: 20px;
+  margin-left: 40px;
+  color: #3b5998;
+  width: 120px; 
+}
+
+.followprofile{
+  margin-top: 25px;
+  color: #3b5998;
+  width: 200px;
+  height: 40px;
+}
+
+
+.userWrapper{
+    height: 130px;
+    background-color: #FFFFFF;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.userWrapper_extra{
+     height: 150px;
+     background-color: #FFFFFF;
+    /*border: 1px solid;*/
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    margin: 0 auto;
+    /*margin-bottom: 30px;*//*lady_doctors#indexで不要*/
+}
+
+.userWrapper_unfollow{
+   height: 150px;
+     background-color: #FFFFFF;
+    /*border: 1px solid;*/
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.edit {
+   padding-top: 10px;
+}
+
+
+
+.unique {
+  color: #3b5998;
+}
+
+.default{
+  color: #9197a3;
+  /*margin-left: 5px;*/
+}
+
+.main {
+  margin-bottom: 10px;	
+}
+
+.item {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  background-color: #FFFFFF;
+}
+
+.additionpost {
+  padding: 2px 5px 15px 40px;
+}
+
+.additionfollow {
+  padding-left: 40px;
+}
+
+.additionleft {
+  width: 100px;
+  height: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  float: left;  
+}
+
+._1 {
+  width: 40px;
+  margin-left: 1px;
+}
+
+.userContent {
+  margin-left: 40px;
+  margin-bottom: 5px;
+}
+
+.field {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.title {
+  font-size: 30px;	
+  margin-top: 30px;
+}
+
+.actions {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px; 
+}
+
+.index {
+  margin: 12px 8px;
+}
+
+.image{
+  padding-left: 10px;
+}
+
+.follow{
+  margin-bottom: 0;
+  padding-left: 30px;
+}
+
+img {
+  padding-top: 20px;
+}
+
+.ladyimage {
+  padding-left: 40px;
+}
+
+.likealert {
+  border: 2px solid #ff69b4;
+  color: ;
+}
+
+.clearfix:after {
+  display: block;
+  clear: both;
+  content: "";
+}

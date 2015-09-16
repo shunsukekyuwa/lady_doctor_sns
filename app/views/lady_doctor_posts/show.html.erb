@@ -1,0 +1,64 @@
+<div class="container">
+ <div class="item">
+    <div class="main">
+      <div class ="clearfix" >
+        <div class="box_left ladyprofile">
+          <% if @post != nil %>
+            <% if @post.image? %>
+             <%= image_tag @post.image.thumb.url %>
+            <% else %>
+          <%= image_tag 'noimage.gif' %>
+            <% end %>
+          <% else %>
+            <%= image_tag 'noimage.gif' %>
+          <% end %>
+        </div>
+        <div class="box_left profile">
+          <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo.</span> <br>
+          <span class="default">Posted at</span> <span class="unique"><%= @lady_doctor_post.created_at %></span>
+        </div>
+      </div>
+      <!-- clearfix -->
+
+      <div class="userContent">
+        <%= @lady_doctor_post.content %>
+      </div>
+        
+
+<div class="ladyimage">
+      <% if @lady_doctor_post.image? %>
+        <%= image_tag @lady_doctor_post.image.url %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+</div>
+
+    </div>
+    <!-- main -->
+
+    
+    <div class="additionpost">
+      <% if @male_post_comments.any? %>
+      <div class="_18--"></div>
+        <strong>コメント一覧</strong><br>
+        <% @male_post_comments.each do |male_post_comment| %>
+          <% if male_post_comment.male.profile_image_id %>
+            <%= image_tag MalePost.find(male_post_comment.male.profile_image_id).image.thumb.url %>
+          <% else %>
+            <%= image_tag 'noimage.gif' %>
+          <% end %>
+          <span class="default">名前：</span><span class="unique"><%= male_post_comment.male.name %></span> |
+          <%= male_post_comment.comment %>
+          <br>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- additionpost -->
+  </div>
+  <!-- item -->
+<%#= link_to 'New Comment', new_male_post_comment_path(male_id: male.id, id: @lady_doctor_post.id) %> <br>
+
+<%= link_to 'Back', @lady_doctor %>
+</div>
+
+</div>

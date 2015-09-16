@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="span6 offset3"> 
+
+    <%= form_for(@lady_doctor) do |f| %>
+      <% if @lady_doctor.errors.any? %>
+       <div id="error_explanation">
+         <h2><%= pluralize(@lady_doctor.errors.count, "error") %> prohibited this male from being saved:</h2>
+
+         <ul>
+         <% @lady_doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+         <% end %>
+         </ul>
+       </div>
+    <% end %>
+      
+    
+      <div class="field">
+        <%= f.label :sex %><br>
+        <%= f.select :sex, [["女", "female"],["男", "male"]]   %>
+      </div>
+      <div class="field">
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </div>
+      
+      <div class="field">
+        <%= f.label :age %><br>
+        <%= f.text_field :age %>
+      </div>
+      <div class="field">
+        <%= f.label :school %><br>
+        <%= f.text_field :school %>
+      </div>
+      <div class="field">
+        <%= f.label :work %><br>
+        <%= f.text_field :work %>
+      </div>
+      <div class="field">
+        <%= f.label :annual_income %><br>
+        <%= f.select :annual_income, [["200万~400万", "0"], ["400万~600万", "1"],["600万~800万", "2"], ["800万~1000万", "3"], ["1000万~2000万", "4"], ["2000万以上", "5"]] %>
+      </div>
+      <!--div class="field"-->
+        <%#= f.label :image %><br>
+        <%#= f.file_field :image %>
+      <!--/div-->
+      
+      <div class="actions">
+        <%= f.submit "登録", class: "btn btn-large btn-primary" %>
+      </div>
+    <% end %>
+
+ </div>
+</div>

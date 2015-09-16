@@ -1,0 +1,74 @@
+<div class="container">
+  <% if @lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
+    <span class="unique">まずはMyPageから自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
+  <% elsif !@lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
+    <span class="unique">投稿をしてプロフィール画像を設定してね</span>
+  <% elsif @lady_doctor.age.nil? && !@lady_doctor.profile_image_id.nil? %>
+    <span class="unique">MyPageから自分のプロフィールを編集してね！</span>
+  <% end %>
+  <div class="clearfix userWrapper">
+    <div class="box_left ladyprofile">
+      <% if @lady_doctor_post != nil %>
+        <% if @lady_doctor_post.image? %>
+      <%= image_tag @lady_doctor_post.image.thumb.url %>
+        <% else %>
+         <%= image_tag 'noimage.gif' %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+    </div>
+    <!-- box_left ladyprofile -->
+    <div class="box_left profile">
+      <span class="default">名前：</span><span class="unique"><%= @lady_doctor.name %></span>
+      <span class="default">MyPosts:</span> <%= @lady_doctor.lady_doctor_posts.count %><br>
+      <span><%= link_to "view my page", @lady_doctor %></span><br>
+    </div>
+  </div>
+  <!-- clearfix userWrapper -->
+
+
+
+      <%#= profile_image_for @male %>
+      
+      <%#= puts @males %>
+  <div class="userPostWrapper">
+    <% if @males.any? %>
+      <h2>Followしてきた男性一覧</h2>
+        <div class="item">
+          <% @males.each do |male| %>
+            <div class="userWrapper_extra"> 
+              <div class ="clearfix">
+                <div class="box_left myprofile follow">
+                  <% if male.profile_image_id %>
+                    <%= image_tag MalePost.find(male.profile_image_id).image.thumb.url %>
+                  <% else %>
+                    <%= image_tag 'noimage.gif' %>
+                  <% end %>
+                </div>
+                <div class="box_left followprofile">
+                  <span class="default">名前: </span><span class="unique"><%= male.name %></span>
+                </div>
+              </div>
+              <!-- clearfix -->
+
+              <div class="_18--"></div>
+              <div class="additionpost clearfix">
+                <div class="additionleft _1"><%= link_to 'Show', follower_path(lady_doctor_id: @lady_doctor.id, id: male.id) %>
+                </div>
+                <div class="additionleft"><%= render partial: 'like_form', locals: {male: male, lady_doctor: @lady_doctor} %>
+                </div>
+              </div>
+              <!-- additionpost -->
+            </div>
+            <!--  userWrapper_extra -->
+          <% end %>
+        </div>
+        <!-- item -->
+    <% end %>
+  </div>
+  <!-- userPostWrapper -->
+ 
+<%= link_to 'ログアウト', destroy_lady_doctor_session_path, method: :delete %>
+
+</div>

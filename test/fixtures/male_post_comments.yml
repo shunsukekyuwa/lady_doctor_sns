@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lady_doctor_post_id: 1
+  male_id: 1
+  comment: MyString
+
+two:
+  lady_doctor_post_id: 1
+  male_id: 1
+  comment: MyString

@@ -1,0 +1,44 @@
+<div class="container">
+
+<h4>女医をフォローして投稿にコメントしよう！</h4>
+
+
+<p class="title">フォローしてない女医たち</p>
+
+	 <div class="userPostWrapper">
+  	<% @lady_doctors.each do |lady_doctor| %>
+    <div class="userWrapper_unfollow"> 
+          <div class ="clearfix">
+              <div class="box_left myprofile follow">
+                <% if lady_doctor.profile_image_id %>
+                  <%= image_tag LadyDoctorPost.find(lady_doctor.profile_image_id).image.thumb.url %>
+                <% else %>
+                  <%= image_tag 'noimage.gif' %>
+                <% end %>
+              </div> 
+
+
+              <div class="box_left followprofile">
+                  <span class="unique"><%= lady_doctor.name %></span> 
+                   <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span>
+              </div>
+            </div>
+            <!--clearfix-->
+
+            <div class="_18--"></div>
+            <div class="additionfollow">
+              <%= link_to 'Show', lady_doctor_path(id: lady_doctor.id) %>
+              <%= render partial: 'follow_form', locals: {lady_doctor: lady_doctor} %>
+            </div>
+
+      </div>
+            
+        
+
+        
+  	<% end %> 
+  </div> 
+  <!--userPostWrapper -->
+
+<%= link_to 'Back', males_path %>
+</div>

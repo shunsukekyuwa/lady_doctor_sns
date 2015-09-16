@@ -1,0 +1,67 @@
+<div class="container">
+  <%= link_to 'このユーザーの全ての投稿を見る', lady_doctor_index_path(id: @lady_doctor.id, male_id: @male.id, lady_doctor_post_id: @lady_doctor_post.id) %>
+
+
+  <div class="item">
+    <div class="main">
+      <div class ="clearfix" >
+        <div class="box_left ladyprofile">
+          <% if @lady_doctor.profile_image_id %>
+            <%= image_tag LadyDoctorPost.find(@lady_doctor.profile_image_id).image.thumb.url %>
+          <% else %>
+            <%= image_tag 'noimage.gif' %>
+          <% end %>
+        </div>
+
+        <div class="box_left profile">
+          <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo.</span> <br>
+          <span class="default">Posted at</span> <span class="unique"><%= @lady_doctor_post.created_at %></span>
+        </div>
+      </div>
+      <!-- clearfix -->
+
+      <div class="userContent">
+        <%= @lady_doctor_post.content %>
+      </div>
+
+<div class="ladyimage">
+      <% if @lady_doctor_post.image? %>
+        <%= image_tag @lady_doctor_post.image.url %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+</div>
+    </div>
+    <!-- main -->
+      
+    
+     
+  
+  <div class="additionpost">
+
+ 
+
+<% @male_post_comments.each do |male_post_comment| %>
+  <div class="_18--"></div>
+  <span>コメント</span><br>
+  <% if @male.profile_image_id %>
+    <%= image_tag MalePost.find(@male.profile_image_id).image.thumb.url %>
+  <% else %>
+    <%= image_tag 'noimage.gif' %>
+  <% end %>
+  <span class="unique"><%= male_post_comment.male.name %></span>
+  <%= male_post_comment.comment %>
+  <%= link_to 'Edit', edit_male_post_comment_path(id: male_post_comment.id) %>
+  <%= link_to 'Delete', male_post_comment_path(id: male_post_comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <br>
+<% end %>
+</div>
+<!-- additionpost -->
+</div>
+<!-- item -->
+
+<%= link_to 'New Comment', new_male_post_comment_path(male_id: @male.id, id: @lady_doctor_post.id) %> <br>
+<br>
+<%= link_to 'Back', males_path %>
+</div>
+<!-- container -->

@@ -1,0 +1,15 @@
+<div class="container">
+
+<h1>Editing user</h1>
+
+<div class="item">
+
+<%= render 'form' %> <!--partialを呼び込む -->
+
+</div>
+
+<br>
+
+<%= link_to 'Back', male_path(id: @male.id) %> <br>
+<%= link_to("アカウントを削除する", male_path(id: @male.id) , method: :delete, data: { confirm: "Are you sure?" }) %>
+</div>

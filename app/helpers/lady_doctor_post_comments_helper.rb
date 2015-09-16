@@ -1,0 +1,2 @@
+module LadyDoctorPostCommentsHelper
+end

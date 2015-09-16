@@ -1,0 +1,26 @@
+<!--　使わない  -->
+
+<h1>My Posts</h1>
+
+<table>
+  <thead>
+    <tr>
+	  <th>content:</th>
+	  <th colspan = "3" ></th>
+	</tr>
+  </thead>
+  <tbody>
+  	<% @male_post.each do |male_post| %>
+  	 <tr>
+  	  <td><%= male_post.content %></td>
+  	  <td><%#= link_to 'Show', male_post %></td>
+  	  <td><%= link_to 'Edit', edit_male_male_post_path(male_id: @male.id, id: male_post.id) %></td>
+  	  <td><%= link_to 'Delete', male_male_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	 </tr>
+  	<% end %> 
+  </tbody>
+</table> 
+
+<br>
+
+<%= link_to 'Back', male_path(id: @male.id) %>

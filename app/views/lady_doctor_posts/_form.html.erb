@@ -1,0 +1,29 @@
+<%= form_for([@lady_doctor,@lady_doctor_post]) do |f| %>
+  <% if @lady_doctor_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lady_doctor_post.errors.count, "error") %> prohibited this lady_doctor_post from being saved:</h2>
+
+      <ul>
+      <% @lady_doctor_post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="hidden">
+    <%= f.hidden_field :lady_doctor_id, :value => @lady_doctor.id %>
+  </div>
+  <div class="field">
+    <%= f.label :image %>
+　　 <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

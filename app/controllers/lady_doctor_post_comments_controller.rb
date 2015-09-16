@@ -1,0 +1,2 @@
+class LadyDoctorPostCommentsController < ApplicationController
+end

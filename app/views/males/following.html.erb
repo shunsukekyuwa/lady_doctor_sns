@@ -1,0 +1,40 @@
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%#= profile_image_for @male %>
+      <h1>名前：<%= @male.name %></h1>
+      <span><%= link_to "view my profile", @male %></span>
+      <span><b>Posts:</b> <%= @male.male_posts.count %></span>
+    </section>
+    <section>
+       <% if @lady_doctor_posts.any? %>
+        <div>
+          <% @lady_doctor_posts.each do |lady_doctor_post| %>
+            <%= lady_doctor_post.lady_doctor.name %>
+            <% if lady_doctor_post.content %>
+              <%= lady_doctor_post.content %>
+            <% end %>
+
+            <div class="image">
+            <% if lady_doctor_post.image? %>
+　　           <%= image_tag lady_doctor_post.image.thumb.url %>
+　           <% else %>
+　　           <%= image_tag 'noimage.gif' %>
+　           <% end %>
+</div>
+             <%= link_to 'Show', lady_doctor_path(id: lady_doctor_post.lady_doctor.id) %>
+             <br>
+          <% end %>
+        </div>
+
+      <% end %>
+    </section>
+  </aside>
+  <div class="span8">
+    
+  </div>
+</div>
+
+<%= link_to 'フォローしてない女医一覧', unfollowing_male_path(id: @male.id) %>
+
+<%= link_to 'ログアウト', destroy_male_session_path, method: :delete %>

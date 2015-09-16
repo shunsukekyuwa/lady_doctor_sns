@@ -1,0 +1,24 @@
+<!--　使うか？　-->
+
+<h1>TimeLine</h1>
+
+<table>
+  <thead>
+    <tr>
+	  <th>content:</th>
+	  <th colspan = "3" ></th>
+	</tr>
+  </thead>
+  <tbody>
+  	<% @lady_doctor_post.each do |lady_doctor_post| %>
+  	 <tr>
+  	  <td><%= lady_doctor_post.content %></td>
+  	  <td><%= link_to 'Show', lady_doctor_post %></td>
+  	  <td><%= link_to 'Edit', edit_lady_doctor_post_path(id: lady_doctor_post.id) %></td>
+  	  <td><%= link_to 'Delete', lady_doctor_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	 </tr>
+  	<% end %> 
+  </tbody>
+</table> 
+
+<br>

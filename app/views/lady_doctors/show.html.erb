@@ -1,0 +1,90 @@
+<div class="container">
+  <% if @lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
+    <span class="unique">自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
+  <% elsif !@lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
+    <span class="unique">プロフィール編集したね！<br>次は投稿をしてプロフィール画像を設定してね</span>
+  <% elsif @lady_doctor.age.nil? && !@lady_doctor.profile_image_id.nil? %>
+    <span class="unique">自分のプロフィールを編集してね！</span>
+  <% end %>
+  <div class="clearfix userWrapper" >
+    <div class="box_left ladyprofile">
+      <% if @lady_doctor_post != nil %>
+        <% if @lady_doctor_post.image? %>
+         <%= image_tag @lady_doctor_post.image.thumb.url %>
+        <% else %>
+         <%= image_tag 'noimage.gif' %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+    </div>
+
+    <div class="box_left profile">
+       <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span><br>
+       <%= link_to 'Edit My Profile', edit_lady_doctor_path(id: @lady_doctor)  %><br>
+    </div>
+
+  </div>
+  <!--  clearfix userWrapper  -->
+
+
+  <%= link_to 'New Post',  new_lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id) %> 
+
+
+  <div class= "userPostWrapper">
+    <% @lady_doctor_posts.each do |lady_doctor_post| %>
+      <div class="item">
+        <div class="main">
+          <div class ="clearfix" >
+            <div class="box_left ladyprofile">
+              <% if @lady_doctor_post != nil %>
+                <% if @lady_doctor_post.image? %>
+                 <%= image_tag @lady_doctor_post.image.thumb.url %>
+                <% else %>
+                 <%= image_tag 'noimage.gif' %>
+                <% end %>
+              <% else %>
+                <%= image_tag 'noimage.gif' %>
+              <% end %>
+            </div>
+
+            <div class="box_left profile">
+              <span class="unique"><%= @lady_doctor.name %></span>  <span class="default">Posted my photo.</span>  <br>
+              <span class="default">posted at </span> <span class="unique"><%= lady_doctor_post.created_at %></span> 
+            </div>
+          </div>
+          <!-- clearfix -->
+
+          <div class="userContent">
+            <%= lady_doctor_post.content %>
+          </div>
+
+
+<div class="image">
+          <% if lady_doctor_post.image? %>
+　　         <%= image_tag lady_doctor_post.image.url %>
+　        <% else %>
+　　         <%= image_tag 'noimage.gif' %>
+　        <% end %>
+</div>
+        </div>
+        <!--main-->
+
+        <div class="_18--"></div>
+        <div class="additionpost">
+        <%= link_to 'Show', lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id) %>
+        <%= link_to 'Edit', edit_lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id) %>
+        <%= link_to 'Delete', lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'これをプロフィール画像にする', lady_doctor_image_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id), method: :post %>
+      </div>
+     </div>
+     <!-- item -->
+    <% end %>
+</div>
+<!-- userPostErapper --> 
+
+
+<%#= link_to 'Edit My Profile', edit_my_thread_path(@my_thread) %> 
+<%= link_to 'Back', lady_doctors_path %>
+
+</div>

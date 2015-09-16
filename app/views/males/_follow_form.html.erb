@@ -1,0 +1,8 @@
+
+  
+  <% if @male.following?(lady_doctor) %>
+    <%= render partial: 'unfollow', locals: {lady_doctor: lady_doctor} %>
+  <% else %>
+    <%= render partial: 'follow', locals: {lady_doctor: lady_doctor} %>
+  <% end %>
+  

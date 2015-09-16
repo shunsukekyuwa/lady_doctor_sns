@@ -1,0 +1,7 @@
+<div id="like_form">
+  <% if lady_doctor.sending?(male) %>
+    <%= render partial: 'unlike', locals: {male: male, lady_doctor: lady_doctor} %>
+  <% else %>
+    <%= render partial: 'like', locals: {male: male} %>
+  <% end %>
+</div>

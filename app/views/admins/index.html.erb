@@ -1,0 +1,31 @@
+<div class="container">
+
+<h1>未承認女医</h1>
+
+<% if @lady_doctors.any? %>
+ <div class="item" >
+  <div class="main">
+   <% @lady_doctors.each do |lady_doctor| %>
+   <div class = "index">
+    <span class="default">名前：</span><span class="unique"><%= lady_doctor.name %> </span> 
+    <span class="default">医師登録番号:</span>
+    <span class="unique"><%= lady_doctor.doctor_number %></span> 
+    <%= link_to '承認', :controller => 'admins', :action => 'confirm', :id =>lady_doctor.id %>
+      <br>
+    </div>
+  <% end %>
+  </div>
+<!-- main -->
+</div> 
+<!-- item -->
+<% else %> 
+  未承認女医はいません
+<% end %> 
+
+
+<br>
+
+<%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>   
+
+</div>
+<!-- container -->

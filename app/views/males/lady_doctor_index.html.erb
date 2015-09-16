@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="clearfix userWrapper" >
+    <div class="box_left ladyprofile">
+      <% if @lady_doctor_post.lady_doctor.profile_image_id %>
+        <%= image_tag LadyDoctorPost.find(@lady_doctor_post.lady_doctor.profile_image_id).image.thumb.url %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+    </div>
+
+
+    <div class="box_left profile">
+      <span class="default">Name:</span><span class="unique"><%= @lady_doctor.name %></span>
+    </div>
+
+  </div>
+  <!--  clearfix userWrapper  -->
+  
+  <div class= "userPostWrapper">
+    <% @lady_doctor_posts.each do |lady_doctor_post| %>
+     <div class="item">
+      <div class="main">
+        <div class ="clearfix" >
+          <div class="box_left ladyprofile">
+            <% if lady_doctor_post.lady_doctor.profile_image_id %>
+              <%= image_tag LadyDoctorPost.find(lady_doctor_post.lady_doctor.profile_image_id).image.thumb.url %>
+            <% else %>
+              <%= image_tag 'noimage.gif' %>
+            <% end %>
+          </div>
+
+           <div class="box_left profile">
+            <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo. </span><br>
+            <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span>
+           </div>
+        </div>
+         <!--clearfix-->
+
+         <div class="userContent">
+          <%= lady_doctor_post.content %>
+         </div>
+
+<div class="ladyimage">
+         <% if lady_doctor_post.image? %>
+           <%= image_tag lady_doctor_post.image.url %>
+         <% else %>
+           <%= image_tag 'noimage.gif' %>
+         <% end %>
+</div>
+
+         </div>
+         <!--main-->
+        </div>
+        <!--item -->
+    <% end %>
+  </div>
+  <!--userPostWrapper -->
+
+<%= link_to 'Back', lady_doctor_posts_show_path(id: @lady_doctor_post.id, male_id: @male.id) %><br>
+<%= link_to 'topに戻る', males_path %>
+</div>
+

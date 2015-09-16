@@ -1,0 +1,20 @@
+/Users/shunsukekyuwa/.rbenv/versions/2.0.0-p481/bin/ruby extconf.rb 
+creating Makefile
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Using compiler: /usr/bin/g++
+../src/cached-powers.cc:136:18: error: unused variable 'kCachedPowersLength' [-Werror,-Wunused-const-variable]
+static const int kCachedPowersLength = ARRAY_SIZE(kCachedPowers);
+                 ^
+1 error generated.
+make[1]: *** [/Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/cached-powers.o] Error 1
+make: *** [x64.release] Error 2
+GYP_GENERATORS=make \
+	build/gyp/gyp --generator-output="out" build/all.gyp \
+	              -Ibuild/standalone.gypi --depth=. \
+	              -Dv8_target_arch=x64 \
+	              -S.x64 -Dhost_arch=x64
+  CXX(target) /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/allocation.o
+  CXX(target) /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/atomicops_internals_x86_gcc.o
+  CXX(target) /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/bignum.o
+  CXX(target) /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/bignum-dtoa.o
+  CXX(target) /Users/shunsukekyuwa/rails_projects/lady_doctor_sns/vendor/bundle/ruby/2.0.0/gems/libv8-3.11.8.3/vendor/v8/out/x64.release/obj.target/preparser_lib/src/cached-powers.o
