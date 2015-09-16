@@ -21,6 +21,9 @@ Rails.application.routes.draw do
 
   #root設定
   #root to: 'males/sessions#new'
+  devise_scope :male do
+      get "/", :to => "males/sessions#new"
+  end
  
   #resources :relationships, only: [:destroy]
   
