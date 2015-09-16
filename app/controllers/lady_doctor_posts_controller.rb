@@ -32,9 +32,9 @@ class LadyDoctorPostsController < ApplicationController
         image_id = @lady_doctor.profile_image_id
         @post = LadyDoctorPost.find(image_id)
       end
+      @male
 	  @lady_doctor_post = LadyDoctorPost.find(params[:id])
-	  @male_post_comments = MalePostComment.where(lady_doctor_post_id: @lady_doctor_post.id)
-	  @male
+	  @male_post_comments = MalePostComment.where(lady_doctor_post_id: @lady_doctor_post.id).order(created_at: :desc)
 	end
 
 	def edit

@@ -20,7 +20,8 @@
 
               <div class="box_left followprofile">
                   <span class="unique"><%= lady_doctor.name %></span> 
-                   <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span>
+                   <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span><br>
+                   <%= Relationship.where(lady_doctor_id: lady_doctor.id).count %></span><span class="default">  Followers</span><br>
               </div>
             </div>
             <!--clearfix-->

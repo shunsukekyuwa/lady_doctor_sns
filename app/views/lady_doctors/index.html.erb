@@ -22,8 +22,8 @@
     </div>
     <!-- box_left ladyprofile -->
     <div class="box_left profile">
-      <span class="default">名前：</span><span class="unique"><%= @lady_doctor.name %></span>
-      <span class="default">MyPosts:</span> <%= @lady_doctor.lady_doctor_posts.count %><br>
+      <span class="default">名前：</span><span class="unique"><%= @lady_doctor.name %></span><br>
+      <span class="default">MyPosts:</span> <%= @lady_doctor.lady_doctor_posts.count %> | <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
       <span><%= link_to "view my page", @lady_doctor %></span><br>
     </div>
   </div>
@@ -50,7 +50,8 @@
                   <% end %>
                 </div>
                 <div class="box_left followprofile">
-                  <span class="default">名前: </span><span class="unique"><%= male.name %></span>
+                  <span class="default">名前: </span><span class="unique"><%= male.name %></span><br>
+                  <%= Relationship.where(male_id: male.id).count %></span><span class="default">  Followings</span>
                 </div>
               </div>
               <!-- clearfix -->

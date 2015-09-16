@@ -22,7 +22,6 @@ class LikesController < ApplicationController
   	@male = Male.find(params[:male_id])
   	@like = Like.find_by(male_id: @male.id, lady_doctor_id: @lady_doctor.id)
   	#@like = Like.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).first
-  	p @like.id
   	@like.destroy
 
   	respond_to do |format|

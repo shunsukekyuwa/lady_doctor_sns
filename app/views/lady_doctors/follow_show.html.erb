@@ -15,7 +15,8 @@
     <!-- 画像 -->
 
     <div class="box_left profile">
-      <span class="default">名前:</span><span class="unique"><%= @male.name %></span>
+      <span class="default">名前:</span><span class="unique"><%= @male.name %></span><br>
+      <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
     </div>
     <!-- プロフィール -->
 
@@ -41,7 +42,9 @@
 
             <div class="box_left profile">
               <span class="unique"><%= @male.name %></span>  <span class="default">Posted my photo.</span>  <br>
-              <span class="default">posted at </span> <span class="unique"><%= male_post.created_at %></span> 
+              <span class="default">posted at </span> <span class="unique"><%= male_post.created_at %></span><br>
+              <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
+
             </div>
           </div>
           <!--clearfix-->
