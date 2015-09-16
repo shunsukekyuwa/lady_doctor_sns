@@ -1,13 +1,15 @@
 <div class="container">
+  <div class="notification">
   <% if @male.age.nil? && @male.profile_image_id.nil? %>
-    <span class="unique">まずはMyPageから自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">まずはMyPageから自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
   <% elsif !@male.age.nil? && @male.profile_image_id.nil? %>
-    <span class="unique">投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">投稿をしてプロフィール画像を設定してね</span>
   <% elsif @male.age.nil? && !@male.profile_image_id.nil? %>
-    <span class="unique">MyPageから自分のプロフィールを編集してね！</span>
+    <span class="notification">MyPageから自分のプロフィールを編集してね！</span>
   <% else %>
-    <span class="unique">気に入った女医をフォローして、投稿にコメントしてアピールしよう！</span><br>
+    <span class="notification">気に入った女医をフォローして、投稿にコメントしてアピールしよう！</span><br>
   <% end %>
+  </div>
 
 
 
@@ -38,8 +40,8 @@
         <span class="likealert">likeしてきた女医の連絡先: </span><br>
           <% @comments.each do |comment| %>
             <%= image_tag LadyDoctorPost.find(LadyDoctor.find_by(email: comment).profile_image_id).image.thumb.url %>
-            <span class="default">名前：</span><span class="unique"><%= LadyDoctor.find_by(email: comment).name %></span>
-            <span class="default">連絡先：</span><span class="unique"><%= comment %></span><br>
+            <span class="default">名前：</span><span class="pink"><%= LadyDoctor.find_by(email: comment).name %></span>
+            <span class="default">連絡先：</span><span class="pink"><%= comment %></span><br>
           <% end %>
         </h3>
       <% end %>
@@ -48,7 +50,7 @@
   
   <div class= "userPostWrapper">
     <% if @lady_doctor_posts.any? %>
-      <h3><%= @title %></h3>
+      <h3 class="notification"><%= @title %></h3>
       <% @lady_doctor_posts.each do |lady_doctor_post| %>
         <div class="item" >
           <div class="main">

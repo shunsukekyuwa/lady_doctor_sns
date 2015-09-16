@@ -1,10 +1,12 @@
 <div class="container">
   <% if @lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
-    <span class="unique">まずはMyPageから自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">まずはMyPageから自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
   <% elsif !@lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
-    <span class="unique">投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">投稿をしてプロフィール画像を設定してね</span>
   <% elsif @lady_doctor.age.nil? && !@lady_doctor.profile_image_id.nil? %>
-    <span class="unique">MyPageから自分のプロフィールを編集してね！</span>
+    <span class="notification">MyPageから自分のプロフィールを編集してね！</span>
+  <% else %>
+    <span class="notification">気に入った男性をlikeしてみよう！</span>
   <% end %>
   <div class="clearfix userWrapper">
     <div class="box_left ladyprofile">
@@ -34,9 +36,10 @@
       <%#= puts @males %>
   <div class="userPostWrapper">
     <% if @males.any? %>
-      <h2>Followしてきた男性一覧</h2>
-        <div class="item">
+      <h2 class="notification">Followしてきた男性一覧</h2>
+        
           <% @males.each do |male| %>
+            <div class="item">
             <div class="userWrapper_extra"> 
               <div class ="clearfix">
                 <div class="box_left myprofile follow">
@@ -62,9 +65,10 @@
               <!-- additionpost -->
             </div>
             <!--  userWrapper_extra -->
-          <% end %>
-        </div>
+            </div>
         <!-- item -->
+          <% end %>
+        
     <% end %>
   </div>
   <!-- userPostWrapper -->
