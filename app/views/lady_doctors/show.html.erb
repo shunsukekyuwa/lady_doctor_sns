@@ -21,6 +21,7 @@
 
     <div class="box_left profile">
        <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span><br>
+       <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
        <%= link_to 'Edit My Profile', edit_lady_doctor_path(id: @lady_doctor)  %><br>
     </div>
 
@@ -50,7 +51,8 @@
 
             <div class="box_left profile">
               <span class="unique"><%= @lady_doctor.name %></span>  <span class="default">Posted my photo.</span>  <br>
-              <span class="default">posted at </span> <span class="unique"><%= lady_doctor_post.created_at %></span> 
+              <span class="default">posted at </span> <span class="unique"><%= lady_doctor_post.created_at %></span> <br>
+              <%= Relationship.where(lady_doctor_id: lady_doctor_post.lady_doctor.id).count %></span><span class="default">  Followers</span><br>
             </div>
           </div>
           <!-- clearfix -->
@@ -72,6 +74,7 @@
 
         <div class="_18--"></div>
         <div class="additionpost">
+        <%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id).count %></span><span class="default"> Comments</span><br>
         <%= link_to 'Show', lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id) %>
         <%= link_to 'Edit', edit_lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id) %>
         <%= link_to 'Delete', lady_doctor_lady_doctor_post_path(lady_doctor_id: @lady_doctor.id, id: lady_doctor_post.id), method: :delete, data: { confirm: 'Are you sure?' } %>

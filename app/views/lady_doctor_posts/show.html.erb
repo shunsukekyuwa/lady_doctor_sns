@@ -15,7 +15,8 @@
         </div>
         <div class="box_left profile">
           <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo.</span> <br>
-          <span class="default">Posted at</span> <span class="unique"><%= @lady_doctor_post.created_at %></span>
+          <span class="default">Posted at</span> <span class="unique"><%= @lady_doctor_post.created_at %></span><br>
+          <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followings</span><br>
         </div>
       </div>
       <!-- clearfix -->

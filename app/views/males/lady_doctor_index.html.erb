@@ -10,7 +10,8 @@
 
 
     <div class="box_left profile">
-      <span class="default">Name:</span><span class="unique"><%= @lady_doctor.name %></span>
+      <span class="default">Name:</span><span class="unique"><%= @lady_doctor.name %></span><br>
+      <span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
     </div>
 
   </div>
@@ -31,7 +32,8 @@
 
            <div class="box_left profile">
             <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo. </span><br>
-            <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span>
+            <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span><br>
+            <span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
            </div>
         </div>
          <!--clearfix-->
@@ -46,6 +48,10 @@
          <% else %>
            <%= image_tag 'noimage.gif' %>
          <% end %>
+</div>
+
+<div class="additionpost">
+<span class="default">MyComments: </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id, male_id: @male.id).count %> / <span class="default">All </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id).count %></span><span class="default">  comments</span><br>
 </div>
 
          </div>

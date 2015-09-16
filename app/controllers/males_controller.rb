@@ -8,12 +8,12 @@ class MalesController < ApplicationController
     if @male.profile_image_id
       image_id = @male.profile_image_id
       @male_post = MalePost.find(image_id)
-      @male_posts = @male.male_posts.all
+      @male_posts = @male.male_posts.order(created_at: :desc).all
     #else  
       #@male_posts = @male.male_posts.all
       
     else
-      @male_posts = @male.male_posts.all
+      @male_posts = @male.male_posts.order(created_at: :desc).all
     end
 
     @title = "フォローしている女医の投稿"
@@ -21,7 +21,7 @@ class MalesController < ApplicationController
     #followしている女性all
 
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
-    @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).all
+    @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).order(created_at: :desc).all
     @comments = Like.where(male_id: @male.id).pluck(:comment)
 
 	end
@@ -30,7 +30,7 @@ class MalesController < ApplicationController
     #@lady_doctorsのlady_doctor_postすべてをcreated_atが新しい順のfirstをとってくる
     #followしている女性all
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
-    @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).all
+    @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).order(created_at: :desc).all
   end
 
   def edit
@@ -51,7 +51,7 @@ class MalesController < ApplicationController
   def unfollowing
     #followしてない女医を全部とってくる
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
-    @lady_doctors = LadyDoctor.where.not(id: follow_ids).all
+    @lady_doctors = LadyDoctor.where.not(id: follow_ids).order(created_at: :desc).all
   end
 
   def unfollowing_index
@@ -59,9 +59,9 @@ class MalesController < ApplicationController
     if @lady_doctor.profile_image_id
       image_id = @lady_doctor.profile_image_id
       @lady_doctor_post = LadyDoctorPost.find(image_id)
-      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     else
-      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     end
   end
 
@@ -69,12 +69,12 @@ class MalesController < ApplicationController
     if @male.profile_image_id
       image_id = @male.profile_image_id
       @male_post = MalePost.find(image_id)
-      @male_posts = @male.male_posts.all
+      @male_posts = @male.male_posts.order(created_at: :desc).all
     #else  
       #@male_posts = @male.male_posts.all
       
     else
-      @male_posts = @male.male_posts.all
+      @male_posts = @male.male_posts.order(created_at: :desc).all
     end
   end
   
@@ -105,14 +105,14 @@ class MalesController < ApplicationController
     @male = Male.find(params[:male_id])
     @lady_doctor_post = LadyDoctorPost.find(params[:id])
     @lady_doctor = @lady_doctor_post.lady_doctor
-    @male_post_comments = MalePostComment.where(lady_doctor_post_id: @lady_doctor_post.id, male_id: @male.id).all
+    @male_post_comments = MalePostComment.where(lady_doctor_post_id: @lady_doctor_post.id, male_id: @male.id).order(created_at: :desc).all
   end
   
   def lady_doctor_index
     @lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
     @male = Male.find(params[:male_id])
     @lady_doctor = LadyDoctor.find(params[:id])
-    @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+    @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
   end
 
 

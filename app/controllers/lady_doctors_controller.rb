@@ -25,9 +25,9 @@ class LadyDoctorsController < ApplicationController
     if @lady_doctor.profile_image_id
       image_id = @lady_doctor.profile_image_id
       @lady_doctor_post = LadyDoctorPost.find(image_id)
-      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     else
-      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.all
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     end
   end
   
@@ -76,7 +76,7 @@ class LadyDoctorsController < ApplicationController
       @male_post = MalePost.find(image_id)
      end
     @lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
-    @male_posts = @male.male_posts.all
+    @male_posts = @male.male_posts.order(created_at: :desc).all
   end
 
   def sending?(male)

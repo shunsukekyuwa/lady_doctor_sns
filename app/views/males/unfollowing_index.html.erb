@@ -1,16 +1,19 @@
 <div class="container">
   <div class="clearfix userWrapper" >
     <div class="box_left ladyprofile">
+      <% if @lady_doctor_post = nil %>
       <% if @lady_doctor_post.lady_doctor.profile_image_id %>
         <%= image_tag LadyDoctorPost.find(@lady_doctor_post.lady_doctor.profile_image_id).image.thumb.url %>
       <% else %>
         <%= image_tag 'noimage.gif' %>
       <% end %>
+      <% end %>
     </div>
 
 
     <div class="box_left profile">
-      <span class="default">Name:</span><span class="unique"><%= @lady_doctor.name %></span>
+      <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span><br>
+      <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
     </div>
 
   </div>
@@ -31,7 +34,8 @@
 
            <div class="box_left profile">
             <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo. </span><br>
-            <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span>
+            <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span><br>
+            <%= Relationship.where(lady_doctor_id: @lady_doctor_post.lady_doctor.id).count %></span><span class="default">  Followers</span><br>
            </div>
         </div>
          <!--clearfix-->

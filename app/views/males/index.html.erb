@@ -28,7 +28,7 @@
     
     <div class="box_left profile">
       <span class="default">名前：</span><span class="unique"><%= @male.name %></span><br>
-      <span class="default">MyPosts:</span> <%= @male.male_posts.count %><br>
+      <span class="default">MyPosts:</span> <%= @male.male_posts.count %><span class="unique">  | <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span><br>
       <span><%= link_to "view my page", @male %></span><br>
       <%= link_to 'フォローしてない女医一覧', unfollowing_male_path(id: @male.id) %>
     </div>
@@ -66,7 +66,8 @@
 
               <div class="box_left profile">
                   <span class="unique"><%= lady_doctor_post.lady_doctor.name %></span> <span class="default">posted my photo.</span><br>
-                   <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span>
+                   <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span><br>
+                   <span class="unique"><%= Relationship.where(lady_doctor_id: lady_doctor_post.lady_doctor.id).count %></span><span class="default">  Followers</span>
               </div>
             </div>
             <!--clearfix-->
@@ -90,6 +91,8 @@
           
          <div class="_18--"></div>
          <div class="additionpost">
+           <span class="default">MyComments: </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id, male_id: @male.id).count %> / <span class="default">All </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id).count %></span><span class="default">  comments</span><br>
+           
            <%= link_to 'Show', lady_doctor_posts_show_path(id: lady_doctor_post.id, male_id: @male.id) %>
          </div>
        </div>
