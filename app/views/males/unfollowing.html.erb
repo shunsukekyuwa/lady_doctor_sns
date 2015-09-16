@@ -27,7 +27,7 @@
 
             <div class="_18--"></div>
             <div class="additionfollow">
-              <%= link_to 'Show', lady_doctor_path(id: lady_doctor.id) %>
+              <%= link_to 'Show', unfollowing_index_path(male_id: @male.id, id: lady_doctor.id) %>
               <%= render partial: 'follow_form', locals: {lady_doctor: lady_doctor} %>
             </div>
 
