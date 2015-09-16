@@ -15,7 +15,7 @@
   	  <td><%= male_post.content %></td>
   	  <td><%#= link_to 'Show', male_post %></td>
   	  <td><%= link_to 'Edit', edit_male_male_post_path(male_id: @male.id, id: male_post.id) %></td>
-  	  <td><%= link_to 'Delete', male_male_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  	  <td><%= link_to 'Delete', male_male_post_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   	 </tr>
   	<% end %> 
   </tbody>

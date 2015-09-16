@@ -1,5 +1,5 @@
 .body{
-  background-color: #F5F5F5;
+  background-color: #191919;
   margin: 0 auto;
   width: 960px;
   position: relative;
@@ -182,9 +182,17 @@ img {
   padding-left: 40px;
 }
 
+.notification {
+  color: #FFFF00;
+}
+
 .likealert {
   border: 2px solid #ff69b4;
-  color: ;
+  color: #FFFF00;
+}
+
+.pink {
+  color: #ff69b4;
 }
 
 .clearfix:after {
