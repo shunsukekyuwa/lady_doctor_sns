@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   devise_scope :male do
       get "/", :to => "males/sessions#new"
   end
+
+
+
  
   #resources :relationships, only: [:destroy]
   
@@ -64,6 +67,7 @@ Rails.application.routes.draw do
     resources :lady_doctor_posts
   end
   
+  get "lady_doctors/:lady_doctor_id/lady_doctor_posts/:lady_doctor_post_id/follow_male/:id" => 'lady_doctor_posts#male_show', as: :commenter  
 
  
   get 'lady_doctors/:lady_doctor_id/follow_male/:id' => 'lady_doctors#follow_show', as: :follower

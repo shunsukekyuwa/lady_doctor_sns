@@ -50,6 +50,8 @@
           <% end %>
           <span class="default">名前：</span><span class="unique"><%= male_post_comment.male.name %></span> |
           <%= male_post_comment.comment %>
+          <%= link_to 'Show', commenter_path(lady_doctor_id: @lady_doctor.id, lady_doctor_post_id: @lady_doctor_post.id, id: male_post_comment.male.id) %><br>
+
           <br>
         <% end %>
       <% end %>

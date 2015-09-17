@@ -35,13 +35,17 @@
     
   </div>
   
+
+  <!-- -likeしてきた女医一覧 -->
   <div>
       <% if @comments.any? %>
         <span class="likealert">likeしてきた女医の連絡先: </span><br>
           <% @comments.each do |comment| %>
             <%= image_tag LadyDoctorPost.find(LadyDoctor.find_by(email: comment).profile_image_id).image.thumb.url %>
             <span class="default">名前：</span><span class="pink"><%= LadyDoctor.find_by(email: comment).name %></span>
-            <span class="default">連絡先：</span><span class="pink"><%= comment %></span><br>
+            <span class="default">連絡先：</span><span class="pink"><%= comment %>  </span>
+            <%= link_to 'Show', lady_doctor_index_path(male_id: @male.id, id: LadyDoctor.find_by(email: comment).id) %><br>
+
           <% end %>
         </h3>
       <% end %>

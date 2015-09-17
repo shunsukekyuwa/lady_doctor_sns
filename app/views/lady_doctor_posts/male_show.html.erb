@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="clearfix userWrapper" >
+    <div class="box_left myprofile">
+
+       <% if @male_post != nil %>
+        <% if @male_post.image? %>
+　　       <%= image_tag @male_post.image.thumb.url %>
+        <% else %>
+　　       <%= image_tag 'noimage.gif' %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'noimage.gif' %>
+      <% end %>
+    </div>
+    <!-- 画像 -->
+
+    <div class="box_left profile">
+      <span class="default">名前:</span><span class="unique"><%= @male.name %></span><br>
+      <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
+    </div>
+    <!-- プロフィール -->
+
+  </div>
+  <!--  clearfix userWrapper  -->
+
+  <div class= "userPostWrapper">
+    <% @male_posts.each do |male_post| %>
+      <div class="item">
+        <div class="main">
+          <div class ="clearfix" >
+            <div class="box_left ladyprofile">
+              <% if @male_post != nil %>
+                <% if @male_post.image? %>
+                  <%= image_tag @male_post.image.thumb.url %>
+                <% else %>
+                  <%= image_tag 'noimage.gif' %>
+                <% end %>
+              <% else %>
+                <%= image_tag 'noimage.gif' %>
+              <% end %>
+            </div>
+
+            <div class="box_left profile">
+              <span class="unique"><%= @male.name %></span>  <span class="default">Posted my photo.</span>  <br>
+              <span class="default">posted at </span> <span class="unique"><%= male_post.created_at %></span><br>
+              <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
+
+            </div>
+          </div>
+          <!--clearfix-->
+
+          <div class="userContent">
+            <%= male_post.content %>
+          </div>
+
+<div class="ladyimage">
+
+          <% if male_post.image? %>
+            <%= image_tag male_post.image.url %>
+          <% else %>
+            <%= image_tag 'noimage.gif' %>
+          <% end %>
+</div>
+      </div>
+      <!-- main -->
+      </div><!--item -->
+    <% end %> 
+     </div> 
+  <!--userPostWrapper -->
+  
+<%= link_to 'MyPageに戻る', lady_doctor_path(id: @lady_doctor.id) %>
+
+</div>
+
+

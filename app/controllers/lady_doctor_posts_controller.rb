@@ -63,6 +63,18 @@ class LadyDoctorPostsController < ApplicationController
       end
 	end
 
+    def male_show
+    @male = Male.find(params[:id])
+     if @male.profile_image_id
+      image_id = @male.profile_image_id
+      @male_post = MalePost.find(image_id)
+     end
+    @lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
+    @male_posts = @male.male_posts.order(created_at: :desc).all
+    end
+
+
+
 	private
 
 	#male_postのcontentのみ更新可能
