@@ -1,40 +1,47 @@
-<div class="row">
-  <aside class="span4">
-    <section>
-      <%#= profile_image_for @male %>
-      <h1>名前：<%= @male.name %></h1>
-      <span><%= link_to "view my profile", @male %></span>
-      <span><b>Posts:</b> <%= @male.male_posts.count %></span>
-    </section>
-    <section>
-       <% if @lady_doctor_posts.any? %>
-        <div>
-          <% @lady_doctor_posts.each do |lady_doctor_post| %>
-            <%= lady_doctor_post.lady_doctor.name %>
-            <% if lady_doctor_post.content %>
-              <%= lady_doctor_post.content %>
-            <% end %>
+<div class="container">
 
-            <div class="image">
-            <% if lady_doctor_post.image? %>
-　　           <%= image_tag lady_doctor_post.image.thumb.url %>
-　           <% else %>
-　　           <%= image_tag 'noimage.gif' %>
-　           <% end %>
+<h4>投稿にイケてるコメントしてLikeを自分に引き寄せろ！</h4>
+
+
+<h3 class="notification">フォローしてる女医たち</h3>
+
+   <div class="userPostWrapper">
+    <% @lady_doctors.each do |lady_doctor| %>
+    <div class="userWrapper_unfollow"> 
+          <div class ="clearfix">
+              <div class="box_left myprofile follow">
+                <% if lady_doctor.profile_image_id %>
+                  <%= image_tag LadyDoctorPost.find(lady_doctor.profile_image_id).image.thumb.url %>
+                <% else %>
+                  <%= image_tag 'noimage.gif' %>
+                <% end %>
+              </div> 
+
+
+              <div class="box_left followprofile">
+                  <span class="unique"><%= lady_doctor.name %></span> 
+                   <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span><br>
+                   <%= Relationship.where(lady_doctor_id: lady_doctor.id).count %></span><span class="default">  Followers</span><br>
+              </div>
+            </div>
+            <!--clearfix-->
+
+            <div class="_18--"></div>
+            <div class="additionfollow">
+              <%= link_to 'Show', following_index_path(male_id: @male.id, id: lady_doctor.id) %>
+              
+            </div>
+
+      </div>
+            
+        
+
+        
+    <% end %> 
+  </div> 
+  <!--userPostWrapper -->
+<%= link_to 'フォローしてない女医一覧', unfollowing_male_path(id: @male.id) %><br>
+<%= link_to 'Back', males_path %>
 </div>
-             <%= link_to 'Show', lady_doctor_path(id: lady_doctor_post.lady_doctor.id) %>
-             <br>
-          <% end %>
-        </div>
 
-      <% end %>
-    </section>
-  </aside>
-  <div class="span8">
-    
-  </div>
-</div>
 
-<%= link_to 'フォローしてない女医一覧', unfollowing_male_path(id: @male.id) %>
-
-<%= link_to 'ログアウト', destroy_male_session_path, method: :delete %>

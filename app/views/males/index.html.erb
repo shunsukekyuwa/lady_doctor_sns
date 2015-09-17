@@ -27,9 +27,9 @@
     </div>
     
     <div class="box_left profile">
-      <span class="default">名前：</span><span class="unique"><%= @male.name %></span><br>
-      <span class="default">MyPosts:</span> <%= @male.male_posts.count %><span class="unique">  | <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span><br>
-      <span><%= link_to "view my page", @male %></span><br>
+      <span class="default">名前：</span><span class="unique"><%= link_to "#{@male.name}", @male %></span><br>
+      <span class="default">MyPosts:</span> <%= @male.male_posts.count %><span class="unique">  | <%= link_to "#{Relationship.where(male_id: @male.id).count}", following_male_path(id: @male.id) %></span><span class="default">  Followings</span><br>
+      <span></span><br>
       <%= link_to 'フォローしてない女医一覧', unfollowing_male_path(id: @male.id) %>
     </div>
     
