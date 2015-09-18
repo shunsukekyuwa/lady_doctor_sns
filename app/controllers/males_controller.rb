@@ -121,7 +121,7 @@ class MalesController < ApplicationController
   end
   
   def lady_doctor_index
-    @lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
+    #@lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
     @male = Male.find(params[:male_id])
     @lady_doctor = LadyDoctor.find(params[:id])
     @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all

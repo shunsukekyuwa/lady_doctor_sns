@@ -19,18 +19,14 @@
 
 
               <div class="box_left followprofile">
-                  <span class="unique"><%= lady_doctor.name %></span> 
+                  <span class="unique"><%= link_to "#{lady_doctor.name}", following_index_path(male_id: @male.id, id: lady_doctor.id) %></span> 
                    <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span><br>
                    <%= Relationship.where(lady_doctor_id: lady_doctor.id).count %></span><span class="default">  Followers</span><br>
               </div>
             </div>
             <!--clearfix-->
 
-            <div class="_18--"></div>
-            <div class="additionfollow">
-              <%= link_to 'Show', following_index_path(male_id: @male.id, id: lady_doctor.id) %>
-              
-            </div>
+            
 
       </div>
             

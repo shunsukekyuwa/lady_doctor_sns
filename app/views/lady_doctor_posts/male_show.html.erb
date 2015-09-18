@@ -15,8 +15,17 @@
     <!-- 画像 -->
 
     <div class="box_left profile">
-      <span class="default">名前:</span><span class="unique"><%= @male.name %></span><br>
-      <%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
+      <span class="default">名前:</span><span class="unique"><%= @male.name %></span>
+      <% if @male.age != nil %>
+      <span class="default">   年齢: </span><span class="unique"><%= @male.age %></span><br>
+      <% end %>
+      <% if @male.work != nil %>
+      <span class="default">仕事: </span><span class="unique"><%= @male.work %></span>
+      <% end %>
+      <% if @male.annual_income != nil %>
+      <span class="default">年収: </span><span class="unique"><%= @male.annual_income %></span><br>
+      <% end %>
+      <br><%= Relationship.where(male_id: @male.id).count %></span><span class="default">  Followings</span>
     </div>
     <!-- プロフィール -->
 

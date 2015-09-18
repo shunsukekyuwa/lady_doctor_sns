@@ -12,8 +12,17 @@
 
 
     <div class="box_left profile">
-      <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span><br>
-      <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
+      <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span>
+      <% if @lady_doctor.age != nil %>
+      <span class="default">   年齢: </span><span class="unique"><%= @lady_doctor.age %></span><br>
+      <% end %>
+      <% if @lady_doctor.work != nil %>
+      <span class="default">仕事: </span><span class="unique"><%= @lady_doctor.work %></span>
+      <% end %>
+      <% if @lady_doctor.annual_income != nil %>
+      <span class="default">年収: </span><span class="unique"><%= @lady_doctor.annual_income %></span><br>
+      <% end %>
+       <br><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
     </div>
 
   </div>
