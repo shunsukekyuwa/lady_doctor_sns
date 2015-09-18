@@ -52,7 +52,8 @@ Rails.application.routes.draw do
     end
     resources :male_posts
   end
-
+  
+  get 'males/:male_id/following/lady_docotrs/:id' => 'males#following_index', as: :following_index
   get 'males/:male_id/unfollowing/lady_docotrs/:id' => 'males#unfollowing_index', as: :unfollowing_index
 
   resources :male_post_comments, except: [:new]

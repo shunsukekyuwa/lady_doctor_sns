@@ -2,7 +2,7 @@ class MalesController < ApplicationController
   #あとで解除する
   #before_action :authenticate_male!, except: [:show]
   before_action :set_follow_ids, only: [:index, :unfollowing]
-  before_action :set_male, only: [:index, :show, :edit, :update, :destroy, :unfollowing, :following, :profile_update, :unfollowing_index]
+  before_action :set_male, only: [:index, :show, :edit, :update, :destroy, :unfollowing, :following, :profile_update, :following_index, :unfollowing_index]
 
 	def index
     if @male.profile_image_id
@@ -21,17 +21,11 @@ class MalesController < ApplicationController
     #followしている女性all
 
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
+    @lady_doctors = LadyDoctor.where(id: follow_ids)
     @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).order(created_at: :desc).all
     @comments = Like.where(male_id: @male.id).pluck(:comment)
 
 	end
-
-  def following
-    #@lady_doctorsのlady_doctor_postすべてをcreated_atが新しい順のfirstをとってくる
-    #followしている女性all
-    follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
-    @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).order(created_at: :desc).all
-  end
 
   def edit
   end
@@ -45,6 +39,24 @@ class MalesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @male.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def following
+    #@lady_doctorsのlady_doctor_postすべてをcreated_atが新しい順のfirstをとってくる
+    #followしている女性all
+    follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
+    @lady_doctors = LadyDoctor.where(id: follow_ids).order(created_at: :desc).all
+  end
+
+  def following_index 
+    @lady_doctor = LadyDoctor.find(params[:id])    
+    if @lady_doctor.profile_image_id
+      image_id = @lady_doctor.profile_image_id
+      @lady_doctor_post = LadyDoctorPost.find(image_id)
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
+    else
+      @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     end
   end
 
@@ -109,7 +121,7 @@ class MalesController < ApplicationController
   end
   
   def lady_doctor_index
-    @lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
+    #@lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
     @male = Male.find(params[:male_id])
     @lady_doctor = LadyDoctor.find(params[:id])
     @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all

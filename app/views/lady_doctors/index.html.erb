@@ -22,9 +22,8 @@
     </div>
     <!-- box_left ladyprofile -->
     <div class="box_left profile">
-      <span class="default">名前：</span><span class="unique"><%= @lady_doctor.name %></span><br>
+      <span class="default">名前：</span><span class="unique"><%= link_to "#{@lady_doctor.name}", @lady_doctor %></span><br>
       <span class="default">MyPosts:</span> <%= @lady_doctor.lady_doctor_posts.count %> | <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
-      <span><%= link_to "view my page", @lady_doctor %></span><br>
     </div>
   </div>
   <!-- clearfix userWrapper -->
@@ -50,7 +49,7 @@
                   <% end %>
                 </div>
                 <div class="box_left followprofile">
-                  <span class="default">名前: </span><span class="unique"><%= male.name %></span><br>
+                  <span class="default">名前: </span><span class="unique"><%= link_to "#{male.name}", follower_path(lady_doctor_id: @lady_doctor.id, id: male.id) %></span><br>
                   <%= Relationship.where(male_id: male.id).count %></span><span class="default">  Followings</span>
                 </div>
               </div>
@@ -58,8 +57,6 @@
 
               <div class="_18--"></div>
               <div class="additionpost clearfix">
-                <div class="additionleft _1"><%= link_to 'Show', follower_path(lady_doctor_id: @lady_doctor.id, id: male.id) %>
-                </div>
                 <div class="additionleft"><%= render partial: 'like_form', locals: {male: male, lady_doctor: @lady_doctor} %>
                 </div>
               </div>

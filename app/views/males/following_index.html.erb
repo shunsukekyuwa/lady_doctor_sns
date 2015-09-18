@@ -1,16 +1,18 @@
 <div class="container">
   <div class="clearfix userWrapper" >
     <div class="box_left ladyprofile">
-      <% if @lady_doctor.profile_image_id %>
-        <%= image_tag LadyDoctorPost.find(@lady_doctor.profile_image_id).image.thumb.url %>
-      <% else %>
-        <%= image_tag 'noimage.gif' %>
+      <% if @lady_doctor_post != nil %>
+        <% if @lady_doctor_post.lady_doctor.profile_image_id %>
+          <%= image_tag @lady_doctor_post.image.thumb.url %>
+        <% else %>
+          <%= image_tag 'noimage.gif' %>
+        <% end %>
       <% end %>
     </div>
 
 
     <div class="box_left profile">
-      <span class="default">Name:</span><span class="unique"><%= @lady_doctor.name %></span>
+      <span class="default">名前:</span><span class="unique"><%= @lady_doctor.name %></span>
       <% if @lady_doctor.age != nil %>
       <span class="default">   年齢: </span><span class="unique"><%= @lady_doctor.age %></span><br>
       <% end %>
@@ -20,7 +22,7 @@
       <% if @lady_doctor.annual_income != nil %>
       <span class="default">年収: </span><span class="unique"><%= @lady_doctor.annual_income %></span><br>
       <% end %>
-      <br><span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
+       <br><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
     </div>
 
   </div>
@@ -32,8 +34,8 @@
       <div class="main">
         <div class ="clearfix" >
           <div class="box_left ladyprofile">
-            <% if lady_doctor_post.lady_doctor.profile_image_id %>
-              <%= image_tag LadyDoctorPost.find(lady_doctor_post.lady_doctor.profile_image_id).image.thumb.url %>
+            <% if @lady_doctor.profile_image_id %>
+              <%= image_tag LadyDoctorPost.find(@lady_doctor.profile_image_id).image.thumb.url %>
             <% else %>
               <%= image_tag 'noimage.gif' %>
             <% end %>
@@ -42,7 +44,7 @@
            <div class="box_left profile">
             <span class="unique"><%= @lady_doctor.name %> </span><span class="default">posted my photo. </span><br>
             <span class="default">Posted at </span><span class="unique"><%= lady_doctor_post.created_at %></span><br>
-            <span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
+            <%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span><br>
            </div>
         </div>
          <!--clearfix-->
@@ -59,10 +61,6 @@
          <% end %>
 </div>
 
-<div class="additionpost">
-<span class="default">MyComments: </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id, male_id: @male.id).count %> / <span class="default">All </span><%= MalePostComment.where(lady_doctor_post_id: lady_doctor_post.id).count %></span><span class="default">  comments</span><br>
-</div>
-
          </div>
          <!--main-->
         </div>
@@ -71,7 +69,7 @@
   </div>
   <!--userPostWrapper -->
 
-
+<%= link_to 'Back', following_male_path(id: @male.id) %><br>
 <%= link_to 'topに戻る', males_path %>
 </div>
 
