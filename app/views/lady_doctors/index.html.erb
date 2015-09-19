@@ -51,6 +51,7 @@
                 <div class="box_left followprofile">
                   <span class="default">名前: </span><span class="unique"><%= link_to "#{male.name}", follower_path(lady_doctor_id: @lady_doctor.id, id: male.id) %></span><br>
                   <%= Relationship.where(male_id: male.id).count %></span><span class="default">  Followings</span>
+                  <%= render partial: 'block_form', locals: {male: male, lady_doctor: @lady_doctor} %>
                 </div>
               </div>
               <!-- clearfix -->

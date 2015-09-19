@@ -13,6 +13,13 @@ class LadyDoctor < ActiveRecord::Base
   #has_many :sending_likes, foreign_key: "male_id", class_name: "Like", dependent: :destroy
   has_many :likes
 
+  has_many :lady_doctor_blocks
+
+  def blocking?(male)
+    lady_doctor_blocks.find_by(male_id: male.id) != nil
+  end
+  
+
   def sending?(male)
   	#p "--------------------------------"
   	#p self.id, male.id

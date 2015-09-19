@@ -1,6 +1,6 @@
 <div class="container">
 
-<h4>投稿にイケてるコメントしてLikeを自分に引き寄せろ！</h4>
+<h4>投稿にイケてるコメントをしてLikeを自分に引き寄せろ！</h4>
 
 
 <h3 class="notification">フォローしてる女医たち</h3>
@@ -22,6 +22,18 @@
                   <span class="unique"><%= link_to "#{lady_doctor.name}", following_index_path(male_id: @male.id, id: lady_doctor.id) %></span> 
                    <span class="default">年齢：</span><span class="unique"><%= lady_doctor.age %></span><br>
                    <%= Relationship.where(lady_doctor_id: lady_doctor.id).count %></span><span class="default">  Followers</span><br>
+
+
+
+
+
+                   <%= render partial: 'block_form', locals: {male: @male, lady_doctor: lady_doctor} %>
+                
+
+
+
+
+                </div>
               </div>
             </div>
             <!--clearfix-->

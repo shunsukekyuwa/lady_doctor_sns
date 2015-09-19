@@ -13,6 +13,8 @@ class Male < ActiveRecord::Base
   has_many :male_posts
   has_many :male_post_comments
 
+  has_many :male_blocks
+
   def following?(lady_doctor)
     following_relationships.find_by(lady_doctor_id: lady_doctor.id)
   end
@@ -23,6 +25,10 @@ class Male < ActiveRecord::Base
 
   def unfollow!(lady_doctor)
     following_relationships.find_by(lady_doctor_id: lady_doctor.id).destroy
+  end
+
+  def blocking?(lady_doctor)
+    male_blocks.find_by(lady_doctor_id: lady_doctor.id) != nil
   end
   
 

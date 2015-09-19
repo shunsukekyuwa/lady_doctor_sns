@@ -50,6 +50,8 @@
           <% end %>
           <span class="default">名前：</span><span class="unique"><%= link_to "#{male_post_comment.male.name}",  commenter_path(lady_doctor_id: @lady_doctor.id, lady_doctor_post_id: @lady_doctor_post.id, id: male_post_comment.male.id) %></span> |
           <%= male_post_comment.comment %>
+
+          <%= render partial: 'lady_doctors/block_form', locals: {male: male_post_comment.male, lady_doctor: @lady_doctor} %>
           
 
           <br>

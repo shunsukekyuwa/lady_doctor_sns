@@ -81,6 +81,13 @@ Rails.application.routes.draw do
   resources :likes, path: "males/:id/like", only: [:create]
   resources :likes, path: "males/:male_id/unlike", only: [:destroy]
 
+  resources :male_blocks, path: "males/:male_id/lady_doctors/:id/block", only: [:create]
+  resources :male_blocks, path: "males/:male_id/lady_doctors/:lady_doctor_id/unblock", only: [:destroy]
+  
+  resources :lady_doctor_blocks, path: "lady_doctors/:lady_doctor_id/males/:id/block", only: [:create]
+  resources :lady_doctor_blocks, path: "lady_doctors/:lady_doctor_id/males/:male_id/unblock", only: [:destroy]
+
+
   #resources :lady_doctors, path: "lady_doctors/:lady_doctor_id/follow_male", controller: :lady_doctor, action: :follow_show, as: :follower
   
   
