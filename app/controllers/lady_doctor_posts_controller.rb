@@ -1,5 +1,6 @@
 class LadyDoctorPostsController < ApplicationController
 	before_action :authenticate_lady_doctor!
+	before_action :blocked?, only: [:male_show] 
 	before_action :set_lady_doctor_post, only: [:show, :edit, :update, :destroy]
 	before_action :set_lady_doctor, only: [:new, :create, :index, :update, :destroy]
 
@@ -64,13 +65,11 @@ class LadyDoctorPostsController < ApplicationController
 	end
 
     def male_show
-    @male = Male.find(params[:id])
-     if @male.profile_image_id
-      image_id = @male.profile_image_id
-      @male_post = MalePost.find(image_id)
-     end
-    @lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
-    @male_posts = @male.male_posts.order(created_at: :desc).all
+      if @male.profile_image_id
+        image_id = @male.profile_image_id
+        @male_post = MalePost.find(image_id)
+      end
+      @male_posts = @male.male_posts.order(created_at: :desc).all
     end
 
 
@@ -89,5 +88,14 @@ class LadyDoctorPostsController < ApplicationController
 	def set_lady_doctor
 	  @lady_doctor = current_lady_doctor
 	end
+
+	def blocked?
+      @male = Male.find(params[:id])
+      @lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
+      if MaleBlock.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).any?
+        redirect_to @lady_doctor
+      end
+    end
+
 
 end

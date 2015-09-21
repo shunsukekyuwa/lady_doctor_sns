@@ -18,8 +18,9 @@ class LadyDoctorBlocksController < ApplicationController
 
   def destroy
   	@male = Male.find(params[:male_id])
-  	@lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
-  	@lady_doctor_block = LadyDoctorBlock.find_by(male_id: @male.id, lady_doctor_id: @lady_doctor.id)
+  	#@lady_doctor = LadyDoctor.find(params[:lady_doctor_id])
+  	#@lady_doctor_block = LadyDoctorBlock.find_by(male_id: @male.id, lady_doctor_id: @lady_doctor.id)
+    @lady_doctor_block = LadyDoctorBlock.find(params[:id])
   	#@like = Like.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).first
   	@lady_doctor_block.destroy
 
