@@ -9,7 +9,12 @@ class LadyDoctorPostsController < ApplicationController
 	end
     
 	def new
-	  @lady_doctor_post = LadyDoctorPost.new
+	  #@lady_doctor.transaction do
+	    @lady_doctor_post = LadyDoctorPost.new
+	  #end
+	  
+	  #rescue => e
+	  #render  :text => e.message	
 	end
 
 	def create
