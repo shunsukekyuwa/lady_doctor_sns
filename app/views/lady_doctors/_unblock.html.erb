@@ -1,0 +1,1 @@
+<%= link_to "Unblock", lady_doctor_block_path(lady_doctor_id: lady_doctor.id, male_id: male.id, id: LadyDoctorBlock.find_by(male_id: male.id, lady_doctor_id: lady_doctor.id).id), method: :delete, data: { confirm: 'Are you sure?' } %>

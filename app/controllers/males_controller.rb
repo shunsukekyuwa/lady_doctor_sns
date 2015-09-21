@@ -1,6 +1,5 @@
 class MalesController < ApplicationController
-  #あとで解除する
-  #before_action :authenticate_male!, except: [:show]
+  before_action :authenticate_male!
   before_action :set_follow_ids, only: [:index, :unfollowing]
   before_action :set_male, only: [:index, :show, :edit, :update, :destroy, :unfollowing, :following, :profile_update, :following_index, :unfollowing_index]
 
@@ -24,11 +23,14 @@ class MalesController < ApplicationController
     @lady_doctors = LadyDoctor.where(id: follow_ids)
     @lady_doctor_posts = LadyDoctorPost.where(lady_doctor_id: follow_ids).order(created_at: :desc).all
     @comments = Like.where(male_id: @male.id).pluck(:comment)
-
 	end
+
+
 
   def edit
   end
+
+
 
   def update
     respond_to do |format|
@@ -49,6 +51,8 @@ class MalesController < ApplicationController
     @lady_doctors = LadyDoctor.where(id: follow_ids).order(created_at: :desc).all
   end
 
+
+
   def following_index 
     @lady_doctor = LadyDoctor.find(params[:id])    
     if @lady_doctor.profile_image_id
@@ -58,13 +62,20 @@ class MalesController < ApplicationController
     else
       @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     end
+    if LadyDoctorBlock.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).any?
+      redirect_to following_male_path
+    end
   end
+
+
 
   def unfollowing
     #followしてない女医を全部とってくる
     follow_ids = Relationship.where(male_id: @male.id).pluck(:lady_doctor_id)
     @lady_doctors = LadyDoctor.where.not(id: follow_ids).order(created_at: :desc).all
   end
+
+
 
   def unfollowing_index
     @lady_doctor = LadyDoctor.find(params[:id])
@@ -76,6 +87,8 @@ class MalesController < ApplicationController
       @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
     end
   end
+
+
 
   def show
     if @male.profile_image_id
@@ -90,6 +103,8 @@ class MalesController < ApplicationController
     end
   end
   
+
+
   def destroy
     @male.destroy
     respond_to do |format|
@@ -97,6 +112,8 @@ class MalesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 
   def profile_update
     @male_post = MalePost.find(params[:id])
@@ -113,12 +130,19 @@ class MalesController < ApplicationController
     end
   end
 
+
+
   def lady_doctor_posts_show
     @male = Male.find(params[:male_id])
     @lady_doctor_post = LadyDoctorPost.find(params[:id])
     @lady_doctor = @lady_doctor_post.lady_doctor
     @male_post_comments = MalePostComment.where(lady_doctor_post_id: @lady_doctor_post.id, male_id: @male.id).order(created_at: :desc).all
+    if LadyDoctorBlock.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).any?
+      redirect_to males_path
+    end
   end
+
+
   
   def lady_doctor_index
     #@lady_doctor_post = LadyDoctorPost.find(params[:lady_doctor_post_id])
@@ -126,6 +150,8 @@ class MalesController < ApplicationController
     @lady_doctor = LadyDoctor.find(params[:id])
     @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
   end
+
+
 
 
   def following?(lady_doctor)
@@ -143,6 +169,7 @@ class MalesController < ApplicationController
 
 
 
+
   private
   
   #
@@ -157,7 +184,5 @@ class MalesController < ApplicationController
   def set_follow_ids
     follow_ids = Relationship.where(male_id = current_male.id).pluck(:lady_doctor_id)
   end
-
-
 
 end

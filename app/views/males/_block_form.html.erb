@@ -1,0 +1,7 @@
+<div id="block_form">
+  <% if male.blocking?(lady_doctor) %>
+    <%= render partial: 'unblock', locals: {male: male, lady_doctor: lady_doctor} %>
+  <% else %>
+    <%= render partial: 'block', locals: {male: male, lady_doctor: lady_doctor} %>
+  <% end %>
+</div>

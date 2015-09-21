@@ -20,7 +20,8 @@
       <% if @lady_doctor.annual_income != nil %>
       <span class="default">年収: </span><span class="unique"><%= @lady_doctor.annual_income %></span><br>
       <% end %>
-      <br><span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
+      <%= render partial: 'block_form', locals: {male: @male, lady_doctor: @lady_doctor} %>
+      <span class="unique"><%= Relationship.where(lady_doctor_id: @lady_doctor.id).count %></span><span class="default">  Followers</span>
     </div>
 
   </div>

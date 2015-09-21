@@ -1,0 +1,2 @@
+module MaleBlocksHelper
+end
