@@ -149,6 +149,9 @@ class MalesController < ApplicationController
     @male = Male.find(params[:male_id])
     @lady_doctor = LadyDoctor.find(params[:id])
     @lady_doctor_posts = @lady_doctor.lady_doctor_posts.order(created_at: :desc).all
+    if LadyDoctorBlock.where(male_id: @male.id, lady_doctor_id: @lady_doctor.id).any?
+      redirect_to males_path
+    end
   end
 
 
