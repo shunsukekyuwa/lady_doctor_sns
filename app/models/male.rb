@@ -8,7 +8,7 @@ class Male < ActiveRecord::Base
   has_many :following_relationships, foreign_key: "lady_doctor_id", class_name: "Relationship", dependent: :destroy
   has_many :followings, through: :following_relationships
 
-  
+  validates :name, presence: true  
   
   has_many :male_posts
   has_many :male_post_comments
