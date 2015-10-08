@@ -13,7 +13,7 @@ describe Male do
   it "is invalid without a password" do
     male = Male.new(password: nil)
     male.valid?
-    expect(male.errors[:password]).to include("can't be blank")
+    expect(male.errors[:password]).not_to include("can't be blank")
   end
   #メールがなければ無効な状態であること
   it "is invalid without an email address" do
@@ -23,7 +23,7 @@ describe Male do
   end
 
   #名前がなければ無効な状態であること
-  it "is without a name" do
+  it "is invalid without a name" do
     male = Male.new(name: nil)
     male.valid?
     expect(male.errors[:name]).to include("can't be blank")
