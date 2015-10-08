@@ -1,10 +1,10 @@
 <div class="container">
   <% if @lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
-    <span class="unique">自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">自分のプロフィールを編集してね！<br>それができたら、投稿をしてプロフィール画像を設定してね</span>
   <% elsif !@lady_doctor.age.nil? && @lady_doctor.profile_image_id.nil? %>
-    <span class="unique">プロフィール編集したね！<br>次は投稿をしてプロフィール画像を設定してね</span>
+    <span class="notification">プロフィール編集したね！<br>次は投稿をしてプロフィール画像を設定してね</span>
   <% elsif @lady_doctor.age.nil? && !@lady_doctor.profile_image_id.nil? %>
-    <span class="unique">自分のプロフィールを編集してね！</span>
+    <span class="notification">自分のプロフィールを編集してね！</span>
   <% end %>
   <div class="clearfix userWrapper" >
     <div class="box_left ladyprofile">
