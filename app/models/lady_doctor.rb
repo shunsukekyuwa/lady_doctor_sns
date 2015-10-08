@@ -15,6 +15,9 @@ class LadyDoctor < ActiveRecord::Base
 
   has_many :lady_doctor_blocks
 
+  validates :name, presence: true
+  validates :doctor_number, presence: true
+
   def blocking?(male)
     lady_doctor_blocks.find_by(male_id: male.id) != nil
   end
